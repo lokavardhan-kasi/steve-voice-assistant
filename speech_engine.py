@@ -1,6 +1,7 @@
 import speech_recognition as sr
 from config import  LANGUAGE, TIMEOUT, PHRASE_LIMIT 
-class speech_engine:
+
+class SpeechEngine:
 
     def __init__(self):
         self.recognizer = sr.Recognizer()
