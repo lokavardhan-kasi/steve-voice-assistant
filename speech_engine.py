@@ -13,7 +13,6 @@ class SpeechEngine:
             self.recognizer.adjust_for_ambient_noise(source,duration = 1)
     # listening for user input and converting it to text using Google's STT 
     def listen(self) ->str:
-        self._calibrate()
         with self.mic as source:
             print('[Steve] Listening...')
             #recording the source from mic into Audio
@@ -21,6 +20,7 @@ class SpeechEngine:
         try:
             text = self.recognizer.recognize_google(audio, language=LANGUAGE)
             print(f'[Steve] Heard: {text}')
+            return text.lower()
         except sr.UnknownValueError:
             print('[Steve] Sorry, I could not understand the audio.')
             return ''

@@ -14,6 +14,9 @@ class CommandHandler:
             self.skills.tell_time()
         elif 'date' in command:
             self.skills.tell_date()
+        elif 'open' in command:
+            app = command.replace('open', '').strip()
+            self.skills.open_application(app)
         elif 'search' in command or 'google' in command:
             query = command.replace('search', '').replace('google', '').strip()
             self.skills.web_search(query)
@@ -22,9 +25,6 @@ class CommandHandler:
             self.skills.wiki_search(query)
         elif any(w in command for w in ['hello', 'hi', 'hey']):
             self.skills.greet()
-        elif 'open' in command:
-            app = command.replace('open', '').strip()
-            self.skills.open_application(app)
         elif 'joke' in command:
             self.skills.tell_joke()
         elif any(w in command for w in ['exit', 'quit', 'bye', 'goodbye']):

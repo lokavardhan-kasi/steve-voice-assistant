@@ -48,9 +48,17 @@ class Skills:
             'calculator': 'calc.exe',
             'paint': 'mspaint.exe',
         }
-        exe = apps.get(app.lower())
-        if exe:
-            os.system(exe)
+        websites = {
+            'google': 'https://www.google.com',
+            'youtube': 'https://www.youtube.com',
+            'gmail': 'https://mail.google.com',
+            'facebook': 'https://www.facebook.com',
+        }
+        if app.lower() in websites:
+            webbrowser.open(websites[app.lower()])
+            self.tts.speak(f'Opening {app}')
+        elif app.lower() in apps:
+            os.system(apps[app.lower()])
             self.tts.speak(f'Opening {app}')
         else:
             self.tts.speak(f'I do not know how to open {app}')
