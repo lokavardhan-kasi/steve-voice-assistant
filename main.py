@@ -14,8 +14,16 @@ class Steve:
 
     def on_wake(self):
         self.tts.speak(WAKE_MSG)
-        command = self.stt.listen()
-        self.handler.handle(command)
+        self.active = True
+        while self.active:
+          command = self.stt.listen()
+          if not command:
+              continue
+          if 'sleep' in command or 'go to sleep' in command:
+              self.tts.speak('Okay, going to sleep. Say my name to wake me.')
+              self.active = False
+          else:
+              self.handler.handle(command)
 
     def run(self):
         self.tts.speak(GREET_MSG)
