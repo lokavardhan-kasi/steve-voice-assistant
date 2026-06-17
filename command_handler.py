@@ -22,7 +22,10 @@ class CommandHandler:
             self.skills.web_search(query)
         elif 'wikipedia' in command or 'who is' in command:
             query = command.replace('wikipedia', '').replace('who is', '').strip()
-            self.skills.wiki_search(query)
+            if not query:
+                self.tts.speak('Please specify what you want to search on Wikipedia.')
+            else:
+                self.skills.wiki_search(query)
         elif any(w in command for w in ['hello', 'hi', 'hey']):
             self.skills.greet()
         elif 'joke' in command:
